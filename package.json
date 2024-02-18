@@ -24,10 +24,8 @@
 	"author": "Anthony Gorski",
 	"license": "ISC",
 	"lint-staged": {
-		"*.js": [
-			"eslint --fix",
-			"prettier --write"
-		]
+		"*.js": "eslint --fix",
+		"*.{js,jsx,ts,tsx,md,html,css}": "prettier --write"
 	},
 	"bugs": {
 		"url": "https://github.com/GorskiAnthony/quiz-code/issues"
