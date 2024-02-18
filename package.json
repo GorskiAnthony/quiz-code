@@ -4,12 +4,13 @@
 	"private": true,
 	"description": "Cette application permettra, après chaque cours, de faire un petit sondage avec un QCM. Il permettra d'avoir des retours sur chaque élève et ainsi, permettre un meilleur accompagnement des étudiants.",
 	"scripts": {
-		"postinstall": "cd client && npm install",
+		"postinstall": "cd client && npm install && cd ../server && npm install",
 		"watch-server": "cd server && npm run dev",
 		"watch-client": "cd client && npm run dev",
-		"cleanup": "rm -rf client/node_modules && rm -rf server/node_modules",
 		"dev": "concurrently -c blue,cyan -n w: \"npm:watch-*\"",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"cleanup": "rm -rf client/node_modules && rm -rf server/node_modules",
+		"lint": "lint-staged",
+		"prepare": "husky"
 	},
 	"repository": {
 		"type": "git",
@@ -22,11 +23,19 @@
 	],
 	"author": "Anthony Gorski",
 	"license": "ISC",
+	"lint-staged": {
+		"*.js": [
+			"eslint --fix",
+			"git add"
+		]
+	},
 	"bugs": {
 		"url": "https://github.com/GorskiAnthony/quiz-code/issues"
 	},
 	"homepage": "https://github.com/GorskiAnthony/quiz-code#readme",
 	"devDependencies": {
-		"concurrently": "^8.2.2"
+		"concurrently": "^8.2.2",
+		"husky": "^9.0.11",
+		"lint-staged": "^15.2.2"
 	}
 }
